@@ -1,169 +1,357 @@
 <style>
-* {
-  box-sizing: border-box;
+/* Animated Wave Background Style  */
+html, body {
+    width: 100%;
+    height: 100%;
 }
 body {
-  margin: 0;
-  font-family: sans-serif;
+    background:radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #B7E8EB 100%);
+    overflow: hidden;
 }
+
+.ocean {
+    height: 5%;
+    width:100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    background: #015871;
+}
+
+.wave {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x;
+    position: absolute;
+    top: -198px;
+    width: 6400px;
+    height: 198px;
+    animation: wave 5s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translate3d(0, 0, 0);
+}
+
+.wave:nth-of-type(2) {
+    top: -175px;
+    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+    opacity: 1;
+}
+
+@keyframes wave {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: -1600px;
+    }
+}
+
+@keyframes swell {
+    0%, 100% {
+        transform: translate3d(0,-25px,0);
+    }
+    50% {
+        transform: translate3d(0,5px,0);
+    }
+}
+
+/* Login Section Style */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: -20px 0 50px;
+    margin-top: 20px;
+}
+
+h1 {
+    font-weight: bold;
+    margin: 0;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: .5px;
+    margin: 20px 0 30px;
+}
+
+span {
+    font-size: 12px;
+}
+
 a {
-  color: #666;
-  font-size: 14px;
-  display: block;
+    color: #0e263d;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
 }
-.login-title {
-  text-align: center;
+
+.container {
+    background: #fff;
+    border-radius: 90px;
+    box-shadow: 30px 14px 28px rgba(0, 0, 5, .2), 0 10px 10px rgba(0, 0, 0, .2);
+    position: relative;
+    overflow: hidden;
+    opacity: 85%;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    transition: 333ms;
 }
-#login-page {
-  display: flex;
+
+
+.form-container form {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding:  0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-.notice {
-  font-size: 13px;
-  text-align: center;
-  color: #666;
+
+.social-container {
+    margin: 20px 0;
+    display: block;
 }
-.login {
-  width: 30%;
-  height: 100vh;
-  background: #FFF;
-  padding: 70px;
+
+
+.social-container a {
+    border: 1px solid #008ecf;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+    transition: 333ms;
 }
-.login a {
-  margin-top: 25px;
-  text-align: center;
+.social-container a:hover {
+    transform: rotateZ(13deg);
+    border: 1px solid #0e263d;
 }
-.form-login {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  align-content: center;
+
+.form-container input {
+    background: #eee;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
 }
-.form-login label {
-  text-align: left;
-  font-size: 13px;
-  margin-top: 10px;
-  margin-left: 20px;
-  display: block;
-  color: #666;
+.form-container input:hover {
+    transform: scale(101%);
 }
-.input-email,
-.input-password {
-  width: 100%;
-  background: #ededed;
-  border-radius: 25px;
-  margin: 4px 0 10px 0;
-  padding: 10px;
-  display: flex;
+
+button {
+    border-radius: 50px;
+    box-shadow: 0 1px 1px ;
+    border: 1px solid #008ecf;
+    background: #008ecf;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
 }
-.icon {
-  padding: 4px;
-  color: #666;
-  min-width: 30px;
-  text-align: center;
+
+button:active {
+    transform: scale(.95);
 }
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  border: 0;
-  background: none;
-  font-size: 16px;
-  padding: 4px 0;
-  outline: none;
+
+button:focus {
+    outline: none;
 }
-button[type="submit"] {
-  width: 100%;
-  border: 0;
-  border-radius: 25px;
-  padding: 14px;
-  background: #008552;
-  color: #FFF;
-  display: inline-block;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 10px;
-  transition: ease all 0.3s;
+
+button.ghost {
+    background: transparent;
+    border-color: #fff;
 }
-button[type="submit"]:hover {
-  opacity: 0.9;
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all .6s ease-in-out;
 }
-.background {
-  width: 70%;
-  padding: 40px;
-  height: 100vh;
-  background: linear-gradient(60deg, rgba(158, 189, 19, 0.5), rgba(0, 133, 82, 0.7)), url('https://cdn.pixabay.com/photo/2016/03/09/09/22/workplace-1245776_960_720.jpg') center no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: flex-end;
-  align-content: center;
-  flex-direction: row;
+
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
 }
-.background h1 {
-  max-width: 420px;
-  color: #FFF;
-  text-align: right;
-  padding: 0;
-  margin: 0;
+
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    z-index: 1;
+    opacity: 0;
 }
-.background p {
-  max-width: 650px;
-  color: #1a1a1a;
-  font-size: 15px;
-  text-align: right;
-  padding: 0;
-  margin: 15px 0 0 0;
+
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform .6s ease-in-out;
+    z-index: 100;
 }
-.created {
-  margin-top: 40px;
-  text-align: center;
+
+.overlay {
+    background: #ff416c;
+    background: linear-gradient(to right, #008ecf, #008ecf) no-repeat 0 0 / cover;
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateY(0);
+    transition: transform .6s ease-in-out;
 }
-.created p {
-  font-size: 13px;
-  font-weight: bold;
-  color: #008552;
+
+.overlay-panel {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform .6s ease-in-out;
 }
-.created a {
-  color: #666;
-  font-weight: normal;
-  text-decoration: none;
-  margin-top: 0;
+
+.overlay-right {
+    right: 0;
+    transform: translateY(0);
 }
-.checkbox label {
-  display: inline;
-  margin: 0;
+
+.overlay-left {
+    transform: translateY(-20%);
 }
+
+/* Move signin to right */
+.container.right-panel-active .sign-in-container {
+    transform: translateY(100%);
+}
+
+/* Move overlay to left */
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+/* Bring signup over signin */
+.container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+}
+
+/* Move overlay back to right */
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+/* Bring back the text to center */
+.container.right-panel-active .overlay-left {
+    transform: translateY(0);
+}
+
+/* Same effect for right */
+.container.right-panel-active .overlay-right {
+    transform: translateY(20%);
+}
+
 </style>
-<div id="login-page">
-  <div class="login">
-    <h2 class="login-title">Login</h2>
-    <p class="notice">Please login to access the system</p>
-    <form class="form-login">
-      <label for="email">E-mail</label>
-      <div class="input-email">
-        <i class="fas fa-envelope icon"></i>
-        <input type="email" name="email" placeholder="Enter your e-mail" required>
-      </div>
-      <label for="password">Password</label>
-      <div class="input-password">
-        <i class="fas fa-lock icon"></i>
-        <input type="password" name="password" placeholder="Enter your password" required>
-      </div>
-      <div class="checkbox">
-        <label for="remember">
-          <input type="checkbox" name="remember">
-          Remember me
-        </label>
-      </div>
-      <button type="submit"><i class="fas fa-door-open"></i> Sign in</button>
-    </form>
-      <a href="#">Forgot your password?</a>
-    <div class="created">
-      <p>Created by <a href="https://codepen.io/kelvinqueiroz/">Kelvin Queiróz</a></p>
-    </div>
-  </div>
-  <div class="background">
-    <h1>Donec in dapibus augue sed nisi nunc suscipit eget enim sit amet</h1>
-  </div>
+<body>
+<!-- Animated Wave Background  -->
+<div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
 </div>
+<!-- Log In Form Section -->
+<section>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Sign Up</h1>
+                <div class="social-container">
+                    <a href="https://Github.com/YasinDehfuli" target="_blank" class="social"><i class="fab fa-github"></i></a>
+                    <a href="https://Codepen.io/YasinDehfuli" target="_blank" class="social"><i class="fab fa-codepen"></i></a>
+                    <a href="mailto:Ydehfuli@gmail.com" target="_blank" class="social"><i class="fab fa-google"></i></a>
+                </div>
+                <span>Or use your Email for registration</span>
+                <label>
+                    <input type="text" placeholder="Name"/>
+                </label>
+                <label>
+                    <input type="email" placeholder="Email"/>
+                </label>
+                <label>
+                    <input type="password" placeholder="Password"/>
+                </label>
+                <button style="margin-top: 9px">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="https://Github.com/YasinDehfuli" target="_blank" class="social"><i class="fab fa-github"></i></a>
+                    <a href="https://Codepen.io/YasinDehfuli" target="_blank" class="social"><i class="fab fa-codepen"></i></a>
+                    <a href="mailto:Ydehfuli@gmail.com" target="_blank" class="social"><i class="fab fa-google"></i></a>
+                </div>
+                <span> Or sign in using E-Mail Address</span>
+                <label>
+                    <input type="email" placeholder="Email"/>
+                </label>
+                <label>
+                    <input type="password" placeholder="Password"/>
+                </label>
+                <a href="#">Forgot your password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Log in</h1>
+                    <p>Sign in here if you already have an account </p>
+                    <button class="ghost mt-5" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Create, Account!</h1>
+                    <p>Sign up if you still don't have an account ... </p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script>
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () =>
+    container.classList.add('right-panel-active'));
+
+signInButton.addEventListener('click', () =>
+    container.classList.remove('right-panel-active'));
+</script>
