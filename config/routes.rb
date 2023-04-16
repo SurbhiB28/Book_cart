@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'password_reset/new'
   get 'password', to: 'password#edit', as: :edit_password
   patch 'password', to: 'password#update'
   delete 'logout', to: 'sessions#destroy'
