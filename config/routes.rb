@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :books
   get 'password/reset', to: 'password_reset#new', as: :password_reset
   post 'password/reset', to: 'password_reset#create'
   get 'password/reset/edit', to: 'password_reset#edit'
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   get 'sign_up', to: 'registrations#new'
   post 'sign_up', to: 'registrations#create'
   get 'login/index'
-  root to: 'main#index' 
+  root to: 'books#index' 
   get 'history/index'
   get 'about/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
