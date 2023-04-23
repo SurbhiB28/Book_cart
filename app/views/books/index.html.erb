@@ -3,7 +3,9 @@
     <h1>There are no books currently in this category</h1>
 <%else%>
 <% @books.each do |book| %>
-<h2><%= link_to book.title, book_path(book) %></h2
+<a href="/books/<%= book.id%>">
+<%= image_tag(book.book_img, style: "width:300px; height:400px; margin: 20px; border-radius: 30px;")%>
+</a>
 <%end%>
 <%end%>
 

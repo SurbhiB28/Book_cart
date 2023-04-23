@@ -3,4 +3,5 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 //= require jquery
-//= require bootstrap-sprockets
+//= require bootstrap-sprocketsimport "trix"
+import "@rails/actiontext"
