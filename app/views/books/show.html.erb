@@ -1,7 +1,27 @@
+
+<div class="row">
+<div class="col-md-4">
+<%= image_tag(@book.book_img, class: "book-show")%>
+</div>
+
+<div class="col-md-8">
 <h2><%= @book.title%></h2>
 <h3><%= @book.author%></h3>
-<h4>Category: <%= @book.category.name%></h4>
 <p><%= @book.description%></p>
+</div>
+</div>
+
+      <% if Current.user %>
+
+<div class="row">
+<div class="col-md-4">
+<%= render @book.reviews %>
+<div>
+<%= link_to "Add Review", new_book_review_path(@book) %>
+</div>
+</div>
+</div>
+<%end%>
 
 <%= link_to "Back", root_path%>
 
@@ -12,3 +32,13 @@
   <%= button_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" } %>
 <%end%>
 <%end%>
+
+<script>
+$('.review-rating').raty({
+readOnly: true,
+score: function() {
+return $(this).attr('data-score');
+},
+path: '/assets/'
+});
+</script>

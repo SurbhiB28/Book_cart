@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :books
+  resources :books do
+    resources :reviews
+  end
   get 'password/reset', to: 'password_reset#new', as: :password_reset
   post 'password/reset', to: 'password_reset#create'
   get 'password/reset/edit', to: 'password_reset#edit'
