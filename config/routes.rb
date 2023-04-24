@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'cart/show'
   resources :books do
     resources :reviews
   end

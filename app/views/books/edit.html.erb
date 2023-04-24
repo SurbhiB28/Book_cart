@@ -4,6 +4,7 @@
 <%= f.select :category_id, @categories%>
   <%=  f.input :title, label: "Book Title" %>
   <%= f.input :description %>
+    <%= f.input :price %>
   <%= f.input :author %>
   <%= f.button :submit %>
     <%= f.file_field :book_img%>
