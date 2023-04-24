@@ -1,4 +1,8 @@
-<div class="review-rating" data-score= "<%= review.rating %>"></div>
+
+<p><% review.rating.times do %>
+<img src="https://img.freepik.com/premium-vector/yellow-star-icon-vector-illustration_118339-2885.jpg" width="25px" height="25px">
+<% end %></p>
+
 <p><%= review.comment %></p>
 
       <% if Current.user %>
@@ -8,4 +12,3 @@
   <%= button_to "Delete", book_review_path(review.book, review), method: :delete, data: { confirm: "Are you sure?" } %>
 <%end%>
 <%end%>
-
