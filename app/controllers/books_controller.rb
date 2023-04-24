@@ -9,6 +9,11 @@ class BooksController < ApplicationController
         end
     end
     def show
+        if @book.reviews.blank?
+            @average_review = 0
+        else
+            @average_review = @book.reviews.average(:rating).round(2)
+        end
     end
     def edit
         @categories = Category.all.map{ |c| [c.name, c.id]}

@@ -7,21 +7,30 @@
 <div class="col-md-8">
 <h2><%= @book.title%></h2>
 <h3><%= @book.author%></h3>
+<h2>Average Rating</h2>
+<p><% @average_review.to_i.times do %>
+<img src="https://img.freepik.com/premium-vector/yellow-star-icon-vector-illustration_118339-2885.jpg" width="25px" height="25px">
+<% end %></p>
+
 <p><%= @book.description%></p>
 </div>
 </div>
 
-      <% if Current.user %>
+
+
 
 <div class="row">
 <div class="col-md-4">
 <%= render @book.reviews %>
+
+      <% if Current.user %>
 <div>
 <%= link_to "Add Review", new_book_review_path(@book) %>
 </div>
-</div>
-</div>
 <%end%>
+
+</div>
+</div>
 
 <%= link_to "Back", root_path%>
 
