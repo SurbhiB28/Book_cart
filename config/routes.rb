@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'cart/show'
+  get 'cart', to: 'cart#show'
+  post 'cart/add'
+  post 'cart/remove'
   resources :books do
     resources :reviews
   end
