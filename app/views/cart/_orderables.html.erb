@@ -1,14 +1,23 @@
+<style>
+.cart {
+        border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    background: aliceblue;
+}
+</style>
+
 <% @cart.orderables.each do |orderable| %>
 <% book = orderable.book %>
 
 <div id="<%= "cart-#{book.id}"%>">
+<div class="cart">
 <strong>Name:</strong>
 <%= book.title %>
 <strong>description:</strong>
 <%= book.description %>
 <strong>Price:</strong>
 <%= book.price %>
-
 <%= form_with(url: cart_add_path) do |f| %>
 <%= f.hidden_field :id, value: book.id%>
 <%= f.number_field :quantity, value: orderable.quantity, min: 0%>
@@ -24,3 +33,4 @@
 </div>
 
 <%end%>
+</div>

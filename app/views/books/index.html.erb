@@ -2,22 +2,33 @@
 <% if @books.count ==0 %>
     <h1>There are no books currently in this category</h1>
 <%else%>
+<div>
+      <% if Current.user %>
+
+<div>
+    <%= render partial: "cart/cart" if @render_cart %>
+</div>
+<%end%>
 <div class="row">
+
 <% @books.each do |book| %>
 <div class="col-md-3">
 <a href="/books/<%= book.id%>">
 <%= image_tag(book.book_img, class: "book")%>
 </a>
 
+      <% if Current.user %>
 
 <%= form_with(url: cart_add_path) do |f| %>
 <%= f.hidden_field :id, value: book.id%>
 <%= f.number_field :quantity, value: 0, min: 1%>
 <%= f.submit "Add To Cart"%>
 <%end%>
+<%end%>
 
 </div>
 <%end%>
+</div>
 </div>
 <%end%>
 
