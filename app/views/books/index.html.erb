@@ -86,6 +86,8 @@
         <%= render partial: "cart/cart" if @render_cart %>
       </div>
     <% end %>
+      &nbsp;
+
   </div>
       <div class="row">
         <% @books.each do |book| %>
@@ -97,9 +99,21 @@
             <% if Current.user %>
               <%= form_with(url: cart_add_path) do |f| %>
                 <%= f.hidden_field :id, value: book.id %>
-                <%= f.number_field :quantity, value: 0, min: 1 %>
-                <%= f.submit "Add To Cart" %>
+                <%= f.number_field :quantity, value: 0, min: 1, style: "  width: 50px;
+  margin-right: 5px; margin-left: 50px;" %>
+                <%= f.submit "Add To Cart", style: "  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  justify-content: center;" %>
               <% end %>
+  &nbsp;
             <% end %>
           </div>
         <% end %>
