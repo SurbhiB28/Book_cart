@@ -1,7 +1,37 @@
+<style>
+.cart-box {
+  border: 1px solid #ddd;
+  padding: 20px;
+  width: 300px;
+}
+
+.cart-box h2 {
+  margin-top: 0;
+}
+
+.check-cart-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #0080ff;
+  color: #fff;
+  text-decoration: none;
+}
+
+.check-cart-btn:hover {
+  background-color: #0066cc;
+}
+
+.cart-box p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+</style>
 <%= turbo_frame_tag "cart" do %>
-<div>
-<h1>Cart</h1>
-<%= link_to "Check Cart", cart_path(@cart) %>
+<div class="cart-box">
+<h2>Cart</h2>
+<%= link_to "Check Cart", cart_path(@cart), class: "check-cart-btn" %>
 <% if @cart.orderables.count > 0 %>
 <%= render "cart/orderables"%>
 <p>Total: <%= @cart.total%></p>

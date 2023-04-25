@@ -1,34 +1,110 @@
-<h1 class="current-category"><%= params[:category]%></h1>
-<% if @books.count ==0 %>
-    <h1>There are no books currently in this category</h1>
-<%else%>
-<div>
-      <% if Current.user %>
+<style>
+  /* The container for the entire page */
+  .page-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-<div>
-    <%= render partial: "cart/cart" if @render_cart %>
+  /* The container for the books */
+  .book-container {
+    flex-grow: 1;
+  }
+
+  /* The container for the cart */
+  .cart-container {
+    width: 30%;
+    flex-shrink: 0;
+  }
+
+  /* The individual cart item */
+  .cart {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    background: aliceblue;
+    display: inline-block;
+    flex-direction: column;
+    line-height: 2.5rem;
+  }
+
+  .cart-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .cart-label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .cart-value {
+    flex-grow: 1;
+  }
+
+  .cart strong {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .cart input[type="number"] {
+    width: 50px;
+    margin-right: 5px;
+  }
+
+  .cart input[type="submit"] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .cart input[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+
+  .cart form {
+    display: inline-block;
+  }
+</style>
+
+<div class="page-container">
+  <div class="book-container">
+    <h1 class="current-category"><%= params[:category] %></h1>
+    <% if @books.count == 0 %>
+      <h1>There are no books currently in this category</h1>
+    <% else %>
+  <div class="cart-container">
+    <% if Current.user %>
+      <div>
+        <%= render partial: "cart/cart" if @render_cart %>
+      </div>
+    <% end %>
+  </div>
+      <div class="row">
+        <% @books.each do |book| %>
+          <div class="col-md-3">
+            <a href="/books/<%= book.id %>">
+              <%= image_tag(book.book_img, class: "book") %>
+            </a>
+
+            <% if Current.user %>
+              <%= form_with(url: cart_add_path) do |f| %>
+                <%= f.hidden_field :id, value: book.id %>
+                <%= f.number_field :quantity, value: 0, min: 1 %>
+                <%= f.submit "Add To Cart" %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
 </div>
-<%end%>
-<div class="row">
-
-<% @books.each do |book| %>
-<div class="col-md-3">
-<a href="/books/<%= book.id%>">
-<%= image_tag(book.book_img, class: "book")%>
-</a>
-
-      <% if Current.user %>
-
-<%= form_with(url: cart_add_path) do |f| %>
-<%= f.hidden_field :id, value: book.id%>
-<%= f.number_field :quantity, value: 0, min: 1%>
-<%= f.submit "Add To Cart"%>
-<%end%>
-<%end%>
-
-</div>
-<%end%>
-</div>
-</div>
-<%end%>
-
