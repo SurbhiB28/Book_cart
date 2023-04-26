@@ -39,14 +39,15 @@
 </div>
 </div>
 &nbsp;
-
-<%= link_to "Back", root_path%>
+<div class="links btn-group">
+<%= link_to "Back", root_path, class: "btn btn-custom"%>
 
       <% if Current.user %>
       <% if @book.user_id == Current.user.id %>
 
-<%= link_to "Edit", edit_book_path(@book)%>
-  <%= button_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" } %>
+<%= link_to "Edit", edit_book_path(@book), class: "btn btn-custom"%>
+<%= button_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
 <%end%>
 <%end%>
 
+</div>
