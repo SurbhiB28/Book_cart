@@ -1,15 +1,19 @@
 
-
-<p><% review.rating.times do %>
+<div class="review">
+<p class="review-rating"><% review.rating.times do %>
 <img src="https://img.freepik.com/premium-vector/yellow-star-icon-vector-illustration_118339-2885.jpg" width="25px" height="25px">
 <% end %></p>
 
-<p><%= review.comment %></p>
+<p class="review-comment"><%= review.comment %></p>
 
       <% if Current.user %>
 <% if review.user_id == Current.user.id %>
 
-<%= link_to "Edit", edit_book_review_path(review.book, review) %>
-  <%= button_to "Delete", book_review_path(review.book, review), method: :delete, data: { confirm: "Are you sure?" } %>
+
+<div class="links btn-group">
+
+<%= link_to "Edit", edit_book_review_path(review.book, review), class: "btn btn-custom"%>
+<%= button_to "Delete", book_review_path(review.book, review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom"%>
 <%end%>
 <%end%>
+</div>
